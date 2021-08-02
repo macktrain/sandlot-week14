@@ -1,0 +1,30 @@
+// import models
+const Class = require('./Class');
+const Race = require('./Race');
+const Profile = require('./Profile');
+
+// Profile belongsTo Class  (1:1)
+Profile.belongsTo(Class, {
+  foreignKey: 'class_id',
+});
+
+// Class is in many profiles (1:M)
+Class.hasMany(Profile, {
+  foreignKey: 'class_id',
+});
+
+// Profile belongsTo Race  (1:1)
+Profile.belongsTo(Race, {
+  foreignKey: 'race_id',
+});
+
+// Race is in many profiles (1:M)
+Race.hasMany(Profile, {
+  foreignKey: 'race_id',
+});
+
+module.exports = {
+  Class,
+  Race,
+  Profile,
+};
