@@ -15,8 +15,8 @@ const blogData = [
   },
   {
     creatorId: '2',
-    blogpostTitle: 'Slangin Triplets',
-    blogpost: 'Triplets come in many styles',
+    blogpostTitle: 'Slangin diapers',
+    blogpost: 'Stay on the ready',
     blog_createDate: '2021-08-03',
   },
   {

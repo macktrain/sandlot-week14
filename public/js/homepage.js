@@ -12,9 +12,9 @@ async function getBlogs() {
     if (blogsJSON){
         for(let key in blogsJSON) {
             blogHTML += `<div class='blogs' id='blogNum-${blogsJSON[key].blogid}'>`;
-            blogHTML += '   <div id=\'blogTitle\'>';
-            blogHTML += `       <h2>${blogsJSON[key].blogpostTitle}</h2>`;
-            blogHTML += `       <div>Posted by ${blogsJSON[key].username} on ${blogsJSON[key].blog_createDate}</div>`;
+            blogHTML += '   <div class=\'blogTitleRow\'>';
+            blogHTML += `       <div class='blogTitle'>${blogsJSON[key].blogpostTitle}</div>`;
+            blogHTML += `       <div class='blogPoster'>Posted by ${blogsJSON[key].username} on ${blogsJSON[key].blog_createDate}</div>`;
             blogHTML += '   </div>';
             blogHTML += `   <p>${blogsJSON[key].blogpost}</p>`;
             blogHTML += "</div>";
@@ -22,8 +22,6 @@ async function getBlogs() {
     } else{
         blogHTML = "There have not been any blogs posted recently.";
     }
-
-    alert (blogHTML);
   
     document.getElementById('current-blogs').innerHTML = blogHTML;
   };

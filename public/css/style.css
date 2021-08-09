@@ -6,8 +6,13 @@ body {
 }
 
 /* Will cause the main body to overflow with a vertical scroll bar, if necessary */
-.body-container {
+.current-blogs{ 
   overflow: auto;
+}
+
+.blogs{
+  width: 1000px;
+  margin-bottom: 25px;
 }
 
 #current-blogs{
@@ -74,7 +79,22 @@ p {
 }
 
 .blogTitle{
+  width: 250px;
+  height: 35px;
+  font-size: 24px;
+}
+
+.blogTitleRow{
+  display: flex;
   color: #d6d6d6;
-  color:rgb(5, 14, 54);
+  background-color:rgb(5, 14, 54);
+  height: 40px;
+}
+
+.blogPoster{
+  padding-left: 250px;
+  line-height: normal;
+  font-size: 12px;
+  text-align: left;
 }
 /* Blog formatting - end */
