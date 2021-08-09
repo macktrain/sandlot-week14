@@ -1,0 +1,80 @@
+body {
+    background-color: rgb(255, 255, 255);
+    font-size: 18px;
+    color:rgb(35, 37, 37);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/* Will cause the main body to overflow with a vertical scroll bar, if necessary */
+.body-container {
+  overflow: auto;
+}
+
+#current-blogs{
+  padding-top: 25px;
+  padding-left: 75px;
+}
+#headerMsg {
+  color:rgb(5, 14, 54);
+  font-size: 72px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 10px 5px 5px rgb(110, 110, 110);
+  height: 100px;
+  width: 500px;
+  padding-left: 350px;
+}
+
+#mainHdr{
+  background-color: rgb(5, 14, 54);
+  height: 190px;
+}
+
+/* Nav Bar Style - start*/
+.menu {
+  overflow: hidden;
+}
+
+.menu a {
+  float: left;
+  color: #d6d6d6;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 32px;
+}
+
+/* on hover color change*/
+.menu a:hover {
+  background-color: rgb(143, 143, 143);
+  color: black;
+}
+
+/* active color change*/
+.menu a.active {
+  background-color: #ffef97;
+  color: rgb(0, 0, 0);
+}
+/* Nav Bar Style - end*/
+
+/*blog formatting -start */
+div {
+  border: .1px solid rgb(0, 0, 0);
+  padding: 1px;
+}
+
+h1 {
+  text-align: center;
+  color: #8c8f8c;
+}
+
+p {
+  text-indent: 50px;
+  text-align: left;
+  letter-spacing: 3px;
+}
+
+.blogTitle{
+  color: #d6d6d6;
+  color:rgb(5, 14, 54);
+}
+/* Blog formatting - end */

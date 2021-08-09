@@ -1,30 +1,42 @@
 // import models
-const Class = require('./Class');
-const Race = require('./Race');
-const Profile = require('./Profile');
+const User = require('./User');
+const Blogs = require('./Blogs');
+const Comments = require('./Comments');
 
-// Profile belongsTo Class  (1:1)
-Profile.belongsTo(Class, {
-  foreignKey: 'class_id',
+// User can have a lot of blogs
+User.hasMany(Blogs, {
+  foreignKey: 'id',
+  onDelete: 'CASCADE',
 });
 
-// Class is in many profiles (1:M)
-Class.hasMany(Profile, {
-  foreignKey: 'class_id',
+// User can have a lot of comments
+User.hasMany(Comments, {
+  foreignKey: 'id',
+  onDelete: 'CASCADE',
 });
+  
+  // A blog can only belong to 1 User
+  Blogs.belongsTo(User, {
+    foreignKey: 'id'
+  });
 
-// Profile belongsTo Race  (1:1)
-Profile.belongsTo(Race, {
-  foreignKey: 'race_id',
-});
+  // A blog can have a lot of comments
+  Blogs.hasMany(Comments, {
+    foreignKey: 'blogid'
+  });
+  
+  // A comment can only belong to 1 blog
+  Comments.belongsTo(Blogs, {
+    foreignKey: 'blogid'
+  });
 
-// Race is in many profiles (1:M)
-Race.hasMany(Profile, {
-  foreignKey: 'race_id',
-});
+  // A comment can only have one creator
+  Comments.belongsTo(User, {
+    foreignKey: 'id',
+  });
 
 module.exports = {
-  Class,
-  Race,
-  Profile,
+  User,
+  Blogs,
+  Comments,
 };
