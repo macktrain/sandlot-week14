@@ -1,83 +1,73 @@
 const router = require('express').Router();
-const {  Race } = require('../../models');
+const bcrypt = require('bcrypt');
+const {  User, Blogs, Comments } = require('../../models');
 
-// The `/api/race` endpoint
+/* The `/api/user` is the endpoint */
 
-//Get race data 
-router.get('/', async (req, res) => {
-    try {
-      const raceData = await Race.findAll();
-      res.json(raceData);
-    } catch (e) {
-      res.json(e);
-      console.log(e);
-    }
-});
-
-//Get race data by id
-router.get('/:id', async (req, res) => {
-    try {
-      const raceIdData = await Race.findByPk(req.params.id);
-
-      if (!raceIdData) {
-        res.status(404).json({ message: `Race with id# ${req.params.id} is not available.` });
-        return;
-      }
-      res.json(raceIdData);
-      
-    } catch (e) {
-      res.json(e);
-      console.log(e);
-    }
-});
-
-// create a new race
+// create a new user (this is the signup capability)
 router.post('/', async (req, res) => {
   try {
-    const newRaceData = await Race.create(req.body);
-    console.log(req.body);
+    //Assign req.body to a new object so we can manipulate the password
+    const newBlogUser = req.body;
+    //hash the pwd in the new object
+    newBlogUser.password = await bcrypt.hash(req.body.password, 10);
+    //write the new user record with the hashed password
+    const newBlogUserRecord = await User.create(newBlogUser);
     // Successful request => error code 200
-    res.status(200).json(newRaceData);
+    res.status(200).json(newBlogUserRecord);
   } catch (err) {
     // Cannot understand request => error code 400
-    res.status(400).json(err);
+    res.status(400)
+      .json(err);
   }
 });
 
-// update a race by its `id` value
-router.put('/:id', (req, res) => {
-  
-  Race.update(
-    {
-      // Update these record fields with respective req.body element
-      id: req.body.id,
-    },
-    {
-      // Gets the books based on the isbn given in the request parameters
-      where: {
-        id: req.params.id,
-      },
+//login with email and pwd combo
+router.post('/login', async (req, res) => {
+  try {
+      const userData = await User.findOne({ where: { email: req.body.email } });
+      
+      if (!userData) {
+        res
+          .status(400)
+          .json({ message: 'Incorrect email or password, please try again-1' });
+        return;
+      }
+
+      const validPassword = await userData.checkPassword(req.body.password);
+
+      if (!validPassword) {
+        res
+          .status(400)
+          .json({ message: 'Incorrect email or password, please try again-2' });
+        return;
+      }
+
+      req.session.save(() => {
+        req.session.user_id = userData.id;
+        req.session.logged_in = true;
+        
+        res.json({ user: userData, message: 'You are now logged in!' });
+      });
+
+    } catch (err) {
+      res.status(400).json(err);
     }
-  )
-    .then((updatedRaceData) => {
-      // Sends the updated book as a json response
-      res.json(updatedRaceData);
-    })
-    .catch((err) => res.json(err));
 });
 
-// delete a rac by its `id` value
-router.delete('/:id', (req, res) => {
-  Race.destroy(
-  {
-    where: {
-      id: req.params.id,
-    },
-  })
-  .then((raceDeleteData) => {
-    res.json(raceDeleteData);
-  })
-  .catch((err) => res.json(err));
+//get user by email
+router.get('/:email', async (req, res) => {
+try {
+  const emailNameData = await User.findOne(req.params.email, {
+    include: [
+      { model: User },
+      { model: Comments },
+    ],
+  });
+  res.json(userEmailData);
+} catch (e) {
+  res.json(e);
+  console.log(e);
+}
 });
-
 module.exports = router;

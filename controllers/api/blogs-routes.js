@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Blogs, User } = require('../../models');
+const { Blogs, User, Comments } = require('../../models');
 
 // The `/api/blogs` endpoint
 
@@ -10,6 +10,7 @@ router.get('/', async (req, res) => {
       const blogsData = await Blogs.findAll({
         include: [
           { model: User },
+          { model: Comments },
         ],
       });
       res.json(blogsData);

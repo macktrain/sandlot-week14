@@ -10,7 +10,7 @@ body {
   overflow: auto;
 }
 
-.blogs{
+.main{
   width: 1000px;
   margin-bottom: 25px;
 }
@@ -72,10 +72,9 @@ h1 {
   color: #8c8f8c;
 }
 
-p {
+.blogPost {
   text-indent: 50px;
   text-align: left;
-  letter-spacing: 3px;
 }
 
 .blogTitle{
@@ -84,7 +83,7 @@ p {
   font-size: 24px;
 }
 
-.blogTitleRow{
+.mainRow{
   display: flex;
   color: #d6d6d6;
   background-color:rgb(5, 14, 54);

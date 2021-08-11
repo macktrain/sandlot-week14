@@ -11,10 +11,10 @@
 <body>
   <div id='mainHdr'>
     <div class='menu'>
-      <a href='/' class='active' id='homeBtn'>Home</a>
-      <a href='/dashboard' id='dashBtn'>Dashboard</a>
-      <a href='/login' id='loginBtn'>Login</a>
-      <a href='/logout' id='logoutBtn'>Logout</a>
+      <span id='homeBtn'><a href='/' class='active'>Home</a></span>
+      <span id='dashBtn'><a href='/dashboard'>Dashboard</a></span>
+      <span id='loginBtn'><a href='/login'>Login</a></span>
+      <span id='logoutBtn'><a href='/logout'>Logout</a></span>
     </div>
     <div id='headerMsg'>
     </div>
@@ -23,11 +23,6 @@
   <div id ='body-container'>
     {{{body}}}
   </div>
-
-  {{#if logged_in}}
-    <script src='/js/logout.js'></script>
-  {{/if}}
-  
 </body>
 
 </html>

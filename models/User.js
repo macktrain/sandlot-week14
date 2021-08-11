@@ -1,9 +1,17 @@
+// import important parts of sequelize library
 const { Model, DataTypes } = require('sequelize');
+const bcrypt = require('bcrypt');
+// import our database connection from config.js
+const sequelize = require('../config/connection');
 
-const sequelize = require('../config/connection.js');
+// Initialize Product model (table) by extending off Sequelize's Model class
+class User extends Model {
+    checkPassword(loginPw) {
+      return bcrypt.compareSync(loginPw, this.password);
+    }
+}
 
-class User extends Model {}
-
+// set up fields and rules for Product model
 User.init(
   {
     id: {
@@ -19,13 +27,16 @@ User.init(
     },
     email: {
       type: DataTypes.STRING,
-      unique: true,
       allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true,
+      }
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-    }
+    },
   },
   {
     sequelize,

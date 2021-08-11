@@ -1,7 +1,7 @@
-document.getElementById('headerMsg').innerHTML = 'The Tech Blog';
+document.getElementById('headerMsg').innerHTML = 'Dashboard';
 
 async function getBlogs() {
-    let response = await fetch('/api/blogs', {
+    let response = await fetch(`/api/blogs/${req.session.id}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     });
@@ -23,7 +23,7 @@ async function getBlogs() {
         blogHTML = "There have not been any blogs posted recently.";
     }
   
-    document.getElementById('current-blogs').innerHTML = blogHTML;
+    document.getElementById('my-blogs').innerHTML = "HELLO!";
   };
 
   getBlogs();
