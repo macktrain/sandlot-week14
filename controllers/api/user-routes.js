@@ -5,16 +5,11 @@ const {  User, Blogs, Comments } = require('../../models');
 /* The `/api/user` is the endpoint */
 
 // create a new user (this is the signup capability)
-router.post('/', async (req, res) => {
+router.post('/signup', async (req, res) => {
   try {
-    //Assign req.body to a new object so we can manipulate the password
-    const newBlogUser = req.body;
-    //hash the pwd in the new object
-    newBlogUser.password = await bcrypt.hash(req.body.password, 10);
-    //write the new user record with the hashed password
-    const newBlogUserRecord = await User.create(newBlogUser);
+    const newBlogUser = await User.create(req.body);
     // Successful request => error code 200
-    res.status(200).json(newBlogUserRecord);
+    res.status(200).json(newBlogUser);
   } catch (err) {
     // Cannot understand request => error code 400
     res.status(400)
