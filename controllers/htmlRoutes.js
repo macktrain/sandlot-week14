@@ -5,7 +5,7 @@ const withAuth = require('../utils/auth');
 
 router.get('/', async (req,res) => {
   try {
-      logged_in = req.session.logged_in;
+      req.session ? (logged_in = req.session.logged_in) : (logged_in=false)
       const blogData = await Blogs.findAll();
       //removes all of the extra data that is beyond the blog data that I need
       const allBlogs = blogData.map((project) => project.get({ plain: true }));
@@ -16,26 +16,16 @@ router.get('/', async (req,res) => {
   } catch (err) {
       res.status(500).json(err);
   }
-  console.log ("HOMEPAGE: req.session.user = " + req.session.user);
-  console.log ("HOMEPAGE: req.session.logged_in = " + req.session.logged_in);
 });
 
 router.get('/login', (req, res) => {
+  req.session ? (logged_in = req.session.logged_in) : (logged_in=false)
   res.render('login');
-  console.log ("LOGIN: req.session.user = " + req.session.user);
-  console.log ("LOGIN: req.session.logged_in = " + req.session.logged_in);
-});
-
-router.get('/logout', (req, res) => {
-  res.render('login');
-  console.log ("LOGIN: req.session.user = " + req.session.user);
-  console.log ("LOGIN: req.session.logged_in = " + req.session.logged_in);
 });
 
 router.get('/signup', (req,res) => {
+  req.session ? (logged_in = req.session.logged_in) : (logged_in=false)
   res.render('signup');
-  console.log ("SIGNUP: req.session.user = " + req.session.user);
-  console.log ("SIGNUP: req.session.logged_in = " + req.session.logged_in);
 });
 
 router.get('/dashboard', withAuth, async (req,res) => {
@@ -45,7 +35,7 @@ router.get('/dashboard', withAuth, async (req,res) => {
           creatorId : req.session.user,
         }
       });
-      logged_in = req.session.logged_in;
+      req.session ? (logged_in = req.session.logged_in) : (logged_in=false)
       //removes all of the extra data that is beyond the blog data that I need
       const blog = blogData.map((project) => project.get({ plain: true }));
       res.render('dashboard', {
@@ -55,8 +45,6 @@ router.get('/dashboard', withAuth, async (req,res) => {
   } catch (err) {
       res.status(500).json(err);
   }
-  console.log ("DASH: req.session.user = " + req.session.user);
-  console.log ("DASH: req.session.logged_in = " + req.session.logged_in);
 });
 
 module.exports = router;

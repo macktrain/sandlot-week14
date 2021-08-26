@@ -1,18 +1,12 @@
-const logout = async () => {
-  console.log ("CLICKED!");
-  console.log ("CLICKED!");
-  console.log ("CLICKED!");
-  console.log ("CLICKED!");
-  console.log ("CLICKED!");
+const logout = async (event) => {
   const response = await fetch('/api/user/logout', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
   });
-
   if (response.ok) {
-    res.render('/');
+    document.location.replace('/');
   } else {
-    alert("ERROR TEXT" + response.statusText);
+    alert("ERROR TEXT: " + response.statusText);
   }
 };
 

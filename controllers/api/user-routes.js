@@ -61,16 +61,10 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/logout', (req, res) => {
-  console.log ("WE ARE HERE *****************************************************");
-  console.log ("WE ARE HERE *****************************************************");
-  console.log (req.session);
+  console.log ("Before " + req.session);
   if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();
-
-      req.session.save((e) => {
-        console.log(e) 
-      });
     });
   } else {
     res.status(404).end();
