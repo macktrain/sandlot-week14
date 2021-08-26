@@ -12,15 +12,19 @@
     </div>
 </div>
 <div id='my-blogs'>
-    {{#each blog}}
-    <div class='main' id='blog#{{this.blogid}}'>
-        <div class='mainRow'>
-            <div class='blogTitle'>{{this.blogpostTitle}}</div>
-            <div class='blogPoster'>Posted by {{this.user}} on {{this.blog_createDate}}</div>
+    {{#if blog}}
+        {{#each blog}}
+        <div class='main' id='blog#{{this.blogid}}'>
+            <div class='mainRow'>
+                <div class='blogTitle'>{{this.blogpostTitle}}</div>
+                <div class='blogPoster'>Posted by {{this.user}} on {{this.blog_createDate}}</div>
+            </div>
+            <p class='blogPost'>{{this.blogpost}}</p>
         </div>
-        <p class='blogPost'>{{this.blogpost}}</p>
-    </div>
-    {{/each}}
+        {{/each}}
+    {{else}}
+        <h2>You do not have any blogs at this time.</h2>
+    {{/if}}
 </div>
 
 <script src="/js/dashboard.js"></script>
