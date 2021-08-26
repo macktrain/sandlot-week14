@@ -1,5 +1,6 @@
 body {
     background-color: rgb(255, 255, 255);
+    width: 1165px;
     font-size: 18px;
     color:rgb(35, 37, 37);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -97,3 +98,7 @@ h1 {
   text-align: left;
 }
 /* Blog formatting - end */
+
+.infoRow {
+  background-color: rgb(243, 205, 205);
+}

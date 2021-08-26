@@ -8,7 +8,7 @@ const seedAll = async () => {
   await sequelize.sync({ force: true });
   console.log('\n----- DATABASE SYNCED -----\n');
   
-  //MUST run profile last because of foreign key constraints
+  //MUST run user first because of foreign key constraints
   await seedUser();
   console.log('\n----- USER SEEDED -----\n');
   

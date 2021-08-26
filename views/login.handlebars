@@ -1,15 +1,33 @@
-<form class="form login-form">
-  <div class="form-group">
-    <label for="email-login">email:</label>
-    <input class="form-input" type="text" id="email-login" />
-  </div>
-  <div class="form-group">
-    <label for="password-login">password:</label>
-    <input class="form-input" type="password" id="password-login" />
-  </div>
-  <div class="form-group">
-    <button class="btn btn-primary" type="submit">login</button>
-  </div>
+<div id='mainHdr'>
+    <div class='menu'>
+        <span id='homeBtn'><a href='/' class='active'>Home</a></span>
+        <span id='dashBtn'><a href='/dashboard'>Dashboard</a></span>
+        {{#if logged_in}}
+        <span id='logoutBtn'><a href='/logout'>Logout</a></span>
+        {{else}}
+        <span id='loginBtn'><a href='/login'>Login</a></span>
+        {{/if}}
+    </div>
+    <div id='headerMsg'>
+    </div>
+</div>
+<h2>Please login or sign up</h2>
+<form id='loginForm'>
+    <div>
+        <label for="email">Email address</label>
+        <input type="email" id="email" aria-describedby="emailHelp"
+            placeholder="Enter email">
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Password">
+    </div>
+    <div>
+        <button type="submit" id="submitBtn">Submit</button>
+    </div>
+    <div class='info-row'>
+        If you do not have a login, please <a href='/signup'>sign up</a> first.
+    </div>
 </form>
 
 <script src="/js/login.js"></script>
