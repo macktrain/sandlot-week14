@@ -1,0 +1,31 @@
+<div id='mainHdr'>
+    <div class='menu'>
+        <span id='homeBtn'><a href='/' class='active'>Home</a></span>
+        <span id='dashBtn'><a href='/dashboard'>Dashboard</a></span>
+        {{#if logged_in}}
+        <span id='logoutBtn'><a href=''>Logout</a></span>
+        {{else}}
+        <span id='loginBtn'><a href='/login'>Login</a></span>
+        {{/if}}
+    </div>
+    <div id='headerMsg'>
+    </div>
+</div>
+<h2>Add a New Post</h2>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
+<form id='newPost'>
+    <div>
+        <label for="postTitle">Post Title</label>
+        <input type="text" id="postTitle" placeholder="Enter Post Title">
+    </div>
+    <div>
+        <label for="postContent">Post Detail</label>
+        <textarea id="postContent" rows="5" placeholder="Enter Post Content"></textarea>
+    </div>
+    <div>
+        <button type="submit" id="submitBtn">Submit</button>
+    </div>
+    <input type="hidden" id="creatorId" value="{{creatorId}}"">
+</form>
+
+<script src="/js/addPost.js"></script>

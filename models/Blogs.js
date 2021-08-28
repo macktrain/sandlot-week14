@@ -23,7 +23,6 @@ Blogs.init(
     blogpostTitle: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
     },
     blogpost: {
         type: DataTypes.STRING,

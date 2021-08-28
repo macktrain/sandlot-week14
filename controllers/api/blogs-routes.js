@@ -30,4 +30,17 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// create a new user (this is the signup capability)
+router.post('/addNewPost', async (req, res) => {
+  try {
+    const newPostData = await Blogs.create(req.body);
+    // Successful request => error code 200
+    res.status(200).json(newPostData);
+  } catch (err) {
+    // Cannot understand request => error code 400
+    res.status(400)
+      .json(err);
+  }
+});
+
 module.exports = router;

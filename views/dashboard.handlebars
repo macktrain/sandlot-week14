@@ -11,7 +11,7 @@
     <div id='headerMsg'>
     </div>
 </div>
-<div id='my-blogs'>
+<div id='myBlogs'>
     {{#if blog}}
         {{#each blog}}
         <div class='main' id='blog#{{this.blogid}}'>
@@ -25,6 +25,9 @@
     {{else}}
         <h2>You do not have any blogs at this time.</h2>
     {{/if}}
+    <div id="addBlogDiv">
+        <button class="button" id='addPostBtn'>&plus; New Post</button>
+    </div>
 </div>
 
 <script src="/js/dashboard.js"></script>

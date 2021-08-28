@@ -47,4 +47,12 @@ router.get('/dashboard', withAuth, async (req,res) => {
   }
 });
 
+router.get('/addPost', (req,res) => {
+  req.session ? (logged_in = req.session.logged_in) : (logged_in=false)
+  res.render('addPost', {
+    logged_in,
+    creatorId : req.session.user,
+  });
+});
+
 module.exports = router;
