@@ -28,8 +28,9 @@ function changeBlogPostDiv(id) {
   replaceHTML +=    "   <label for='postContent'>Post Detail</label>";
   replaceHTML +=    `   <textarea id='postContent' rows='5' placeholder='Enter Post Content'>${post}</textarea>`;
   replaceHTML +=    "</div>";
-  replaceHTML +=    "<div>";
-  replaceHTML +=    `   <button type='submit' id='updateBtn' onclick='updatePostFunc(${id})'>Update</button>`;
+  replaceHTML +=    "<div id='dashBtnList>";
+  replaceHTML +=    `   <button id='updateBtn' onclick='updatePostFunc(${id})'>Update</button>`;
+  replaceHTML +=    `   <button id='deleteBtn' onclick='deletePostFunc(${id})'>Delete</button>`;
   replaceHTML +=    "</div>";
 
   document.getElementById(`blog#${id}`).innerHTML = replaceHTML;
@@ -37,27 +38,41 @@ function changeBlogPostDiv(id) {
 }
 
 async function updatePostFunc (id) {   
+  const url = `/api/blogs/${id}`;
+  const data = {
+      'blogpost' : document.getElementById('postContent').value,
+      'blog_update_date' : moment().format("YYYY-MM-DD"),
+  };
+  
+  const postData = JSON.stringify(data);      
+  let response = await fetch(url, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: postData,
+  });
+  
+  if (response.ok) {
+    document.location.replace('/dashboard');
+  } else {
+    alert('There was an issue creating your post.');
+  }
+
+}
+
+async function deletePostFunc (id) {   
     const url = `/api/blogs/${id}`;
-    const data = {
-        'blogpost' : document.getElementById('postContent').value,
-        'blog_update_date' : moment().format("YYYY-MM-DD"),
-    };
-    
-    const postData = JSON.stringify(data);      
+       
     let response = await fetch(url, {
-        method: 'PUT',
+        method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
-        body: postData,
     });
     
     if (response.ok) {
       document.location.replace('/dashboard');
     } else {
-      alert('There was an issue creating your post.');
+      alert('There was an issue deleting your post.');
     }
 }
-  
-document.querySelector('#newPost').addEventListener('submit', updatePostFunc);
 
 function gotoDash () {
     document.location.replace('/addPost');

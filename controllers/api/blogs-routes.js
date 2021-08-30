@@ -64,4 +64,19 @@ router.put('/:blogid', (req, res) => {
     .catch((err) => res.json(err));
 });
 
+
+//Delete post by id
+router.delete('/:blogid', (req, res) => {
+  Blogs.destroy(
+  {
+    where: {
+      blogid: req.params.blogid,
+    },
+  })
+  .then((postDeleteData) => {
+    res.json(postDeleteData);
+  })
+  .catch((err) => res.json(err));
+});
+
 module.exports = router;
