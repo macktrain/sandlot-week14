@@ -43,4 +43,25 @@ router.post('/addNewPost', async (req, res) => {
   }
 });
 
+//Update a post by post id
+router.put('/:blogid', (req, res) => {  
+    Blogs.update(
+        {
+            // Update this post with the following data
+            blogpost: req.body.blogpost,
+            blog_update_date: req.body.blog_update_date,
+        },
+        {
+            where: {
+              blogid: req.params.blogid,
+            },
+        }
+    )
+    .then((updatedData) => {
+      // Sends the updated book as a json response
+      res.json(updatedData);
+    })
+    .catch((err) => res.json(err));
+});
+
 module.exports = router;

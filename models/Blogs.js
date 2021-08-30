@@ -28,9 +28,12 @@ Blogs.init(
         type: DataTypes.STRING,
         allowNull: false,
     },
-    blog_createDate: {
+    blog_create_date: {
         type: DataTypes.DATE,
         allowNull: false,
+    },
+    blog_update_date: {
+        type: DataTypes.DATE,
     },
   },
   {

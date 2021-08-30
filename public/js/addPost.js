@@ -10,7 +10,7 @@ const addNewPost = async (event) => {
           'creatorId' : creatorId,
           'blogpostTitle' : document.getElementById('postTitle').value.trim(),
           'blogpost' : document.getElementById('postContent').value.trim(),
-          'blog_createDate' : moment().format("YYYY-MM-DD"),
+          'blog_create_date' : moment().format("YYYY-MM-DD"),
       };
      
       const postData = JSON.stringify(data);      
