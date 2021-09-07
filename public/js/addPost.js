@@ -27,5 +27,4 @@ const addNewPost = async (event) => {
       }
   };
   
-  document.querySelector('#newPost')
-  .addEventListener('submit', addNewPost);
+  document.querySelector('#newPost').addEventListener('submit', addNewPost);
