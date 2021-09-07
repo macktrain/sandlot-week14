@@ -28,7 +28,7 @@ function changeBlogPostDiv(id) {
   replaceHTML +=    "   <label for='postContent'>Post Detail</label>";
   replaceHTML +=    `   <textarea id='postContent' rows='5' placeholder='Enter Post Content'>${post}</textarea>`;
   replaceHTML +=    "</div>";
-  replaceHTML +=    "<div id='dashBtnList>";
+  replaceHTML +=    "<div class='btnList>";
   replaceHTML +=    `   <button id='updateBtn' onclick='updatePostFunc(${id})'>Update</button>`;
   replaceHTML +=    `   <button id='deleteBtn' onclick='deletePostFunc(${id})'>Delete</button>`;
   replaceHTML +=    "</div>";
@@ -41,7 +41,7 @@ async function updatePostFunc (id) {
   const url = `/api/blogs/${id}`;
   const data = {
       'blogpost' : document.getElementById('postContent').value,
-      'blog_update_date' : moment().format("YYYY-MM-DD"),
+      'blog_update_date' :  moment().format("YYYY-MM-DD HH:mm:ss"),
   };
   
   const postData = JSON.stringify(data);      

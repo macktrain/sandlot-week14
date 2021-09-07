@@ -32,6 +32,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
+var Handlebars = require("handlebars");
+var MomentHandler = require("handlebars.moment");
+MomentHandler.registerHelpers(Handlebars);
+
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });

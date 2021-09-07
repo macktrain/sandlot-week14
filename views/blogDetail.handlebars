@@ -1,0 +1,44 @@
+<div id='mainHdr'>
+    <div class='menu'>
+        <span id='homeBtn'><a href='/' class='active'>Home</a></span>
+        <span id='dashBtn'><a href='/dashboard'>Dashboard</a></span>
+        {{#if logged_in}}
+        <span id='logoutBtn'><a href=''>Logout</a></span>
+        {{else}}
+        <span id='loginBtn'><a href='/login'>Login</a></span>
+        {{/if}}
+    </div>
+    <div id='headerMsg'>
+    </div>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
+<div id='myblogs'>
+    {{#blog}}
+    <input type="hidden" id="creatorId" value="{{creatorId}}">
+    <input type="hidden" id="blogId" value="{{blogid}}">
+    <div class='main' id='blogmain#{{blogid}}'>
+        <div class='mainRow'>
+            <div class='blogTitle'>{{blogpostTitle}}</div>
+            <div class='blogPoster'>Posted by {{user.username}} on {{moment date=blog_create_date format="MM/DD/YYYY"}} at {{moment date=blog_create_date format="HH:mm:ss"}}</div>
+        </div>
+        <div class='blogPost' id='blog#{{blogid}}'>
+            <p id='p_blogid#{{blogid}}'>{{blogpost}}</p>
+        </div>
+        <div id='addComment'>
+            <label for="addThisComment"><strong>Add a comment: </strong></label>
+            <input id='addThisComment' size='100'>
+            <button class="button" id='addCommentBtn'>&plus; Add</button>
+        </div>
+        <div id='comments'>
+            {{#with [comments]}}
+                <div class='commentAuthor'>Comment made by {{user.username}} on {{moment date=blog_create_date format="MM/DD/YYYY"}} at {{moment date=blog_create_date format="HH:mm:ss"}}</div>
+                <div class='commentDiv' id='comment#{{[id]}}'>
+                    <div class='comment'>{{[comment]}}</div>
+                </div>
+            {{/with}}
+        </div>
+    </div>
+    {{/blog}}
+</div>
+
+<script src="/js/openBlog.js"></script>

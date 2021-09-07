@@ -15,7 +15,7 @@
 <div id='myBlogs'>
     {{#if blog}}
         {{#each blog}}
-        <div class='main'>
+        <div class='main' id='blogmain#{{this.blogid}}'>
             <div class='mainRow'>
                 <span><a href='javascript:changeBlogPostDiv({{this.blogid}});'>&#8635</a></span>
                 <div class='blogTitle'> {{this.blogpostTitle}}</div>

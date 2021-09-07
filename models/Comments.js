@@ -9,7 +9,7 @@ class Comments extends Model {}
 // set up fields and rules for Product model
 Comments.init(
   {
-    blogid: {
+    commentid: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -29,9 +29,12 @@ Comments.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    comment_createDate: {
+    comment_create_date: {
       type: DataTypes.DATE,
       allowNull: false,
+    },
+    comment_update_date: {
+      type: DataTypes.DATE,
     },
   },
   {

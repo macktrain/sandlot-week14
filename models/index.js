@@ -30,13 +30,13 @@ Comments.belongsTo(User, {
 // A blog can have a lot of comments
 Blogs.hasMany(Comments, {
   sourceKey: 'blogid',
-  foreignKey: 'commentorid',
+  foreignKey: 'commentid',
 });
 
 // A comment can only belong to 1 blog
 Comments.belongsTo(Blogs, {
   targetKey: 'blogid',
-  foreignKey: 'commentorid',
+  foreignKey: 'commentid',
 });
 
 module.exports = {
