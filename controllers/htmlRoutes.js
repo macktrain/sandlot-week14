@@ -69,23 +69,27 @@ router.get('/openBlog/:blogid', async (req,res) => {
       //     type: sequelize.QueryTypes.SELECT,
       // });
       
-      const blog = await Blogs.findAll({
-        include: [{
-          model: Comments,
-          where: { commentid : req.params.blogid },
-          right: true 
-        }],
+      const blog = await Blogs.findOne({
+        where: { blogid: req.params.blogid },
+        include: [
+          {
+            model: User,
+          },
+          {
+            model: Comments,
+          }
+        ],
         raw : true,
         nest : true 
       });
-      
-      console.log ('********************************************************');
-      console.log ('********************************************************');
-      console.log ('********************************************************');
-      console.log (blog);
-      console.log ('********************************************************');
-      console.log ('********************************************************');
-      console.log ('********************************************************');
+
+      console.log('*************blog**************');
+      console.log('*************blog**************');
+      console.log('*************blog**************');
+      console.log(blog);
+      console.log('*************blog**************');
+      console.log('*************blog**************');
+      console.log('*************blog**************');
       
       res.render('blogDetail', {
         blog,
