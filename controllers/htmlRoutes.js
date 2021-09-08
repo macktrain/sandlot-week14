@@ -68,7 +68,7 @@ router.get('/openBlog/:blogid', async (req,res) => {
       //   }
       // );
       
-      const blog = await Blogs.findAll({
+      const blogData = await Blogs.findAll({
         include: [
           {
             model: User,
@@ -80,21 +80,14 @@ router.get('/openBlog/:blogid', async (req,res) => {
             include: [
               {
                 model: User,
+                attributes: ['id','username','email']
               }
             ], 
           }
         ],
-        raw : true,
-        nest : true 
       });
-
-      console.log('*************blog**************');
-      console.log('*************blog**************');
-      console.log('*************blog**************');
-      console.log(blog);
-      console.log('*************blog**************');
-      console.log('*************blog**************');
-      console.log('*************blog**************');
+      
+      const blog = blogData.map((project) => project.get({ plain: true }));
       
       res.render('blogDetail', {
         blog,

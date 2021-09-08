@@ -30,12 +30,12 @@
             <button class="button" id='addCommentBtn'>&plus; Add</button>
         </div>
         <div id='comments'>
-            {{#with [comments]}}
-                <div class='commentAuthor'>Comment made by {{user.username}} on {{moment date=blog_create_date format="MM/DD/YYYY"}} at {{moment date=blog_create_date format="HH:mm:ss"}}</div>
+            {{#comments}}
+                <div class='commentAuthor'>Comment made by {{user.username}} on {{moment date=comment_create_date format="MM/DD/YYYY"}} at {{moment date=comment_create_date format="HH:mm:ss"}}</div>
                 <div class='commentDiv' id='comment#{{[id]}}'>
                     <div class='comment'>{{[comment]}}</div>
                 </div>
-            {{/with}}
+            {{/comments}}
         </div>
     </div>
     {{/blog}}
