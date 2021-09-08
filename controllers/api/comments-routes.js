@@ -14,7 +14,7 @@ router.get('/:id', async (req, res) => {
         ],
         raw : true ,
         nest : true
-    });
+      });
       
       res.json(commentData);
     } catch (e) {

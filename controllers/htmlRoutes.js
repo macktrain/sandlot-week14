@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { User, Blogs, Comments } = require('../models');
 const withAuth = require('../utils/auth');
+const { QueryTypes } = require('sequelize');
 
 router.get('/', async (req,res) => {
   try {
@@ -58,25 +59,29 @@ router.get('/openBlog/:blogid', async (req,res) => {
   try {
       req.session ? (logged_in = req.session.logged_in) : (logged_in=false)
 
-      // let query = 'SELECT blogs.*, comments.* FROM blogs b ';
-      // query += 'RIGHT JOIN comments c ';
-      // query += 'ON b.blogid = c.commentid ';
-      // query += 'WHERE b.blogid = (:blogid) ';
+      // let commentQuery = 'SELECT * FROM blog_db.blogs INNER JOIN blog_db.comments ON commentid = :blogid';
 
-
-      // const blog = await dbBlog.sequelize.query(query, {
-      //     replacements: { blogid: req.params.blogid },
-      //     type: sequelize.QueryTypes.SELECT,
-      // });
+      // const blog = await sequelize.query(query,
+      //   {
+      //     replacements: {blogid: req.params.blogid},
+      //     type: QueryTypes.SELECT
+      //   }
+      // );
       
-      const blog = await Blogs.findOne({
-        where: { blogid: req.params.blogid },
+      const blog = await Blogs.findAll({
         include: [
           {
             model: User,
+            attributes: ['id','username','email']
           },
           {
             model: Comments,
+            where: { commentid: req.params.blogid },
+            include: [
+              {
+                model: User,
+              }
+            ], 
           }
         ],
         raw : true,
