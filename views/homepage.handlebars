@@ -13,17 +13,24 @@
 </div>
 <div id='my-blogs'>
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
-    {{#allBlogs}}
-    <div class='main' id='blog#{{blogid}}'>
-        <div class='mainRow' onclick='commentPost({{blogid}})'>
-            <div class='blogTitle'>{{blogpostTitle}}</div>
-            <div class='blogPoster'>Posted by {{user.username}} on {{moment date=blog_create_date format="MM/DD/YYYY"}} at {{moment date=blog_create_date format="HH:mm:ss"}}</div>
+    <!-- {{handlebars}} if there are blog sent along with the view, then it will begin
+         building the posts on the page NOTE: this shows all blogs created by all users -->
+    {{#if blog}}
+        {{#allBlogs}}
+        <div class='main' id='blog#{{blogid}}'>
+            <div class='mainRow' onclick='commentPost({{blogid}})'>
+                <div class='blogTitle'>{{blogpostTitle}}</div>
+                <div class='blogPoster'>Posted by {{user.username}} on {{moment date=blog_create_date format="MM/DD/YYYY"}} at {{moment date=blog_create_date format="HH:mm:ss"}}</div>
+            </div>
+            <div class='blogPost' id='blog#{{blogid}}'>
+                <p id='blog#{{blogid}}'>{{blogpost}}</p>
+            </div>
         </div>
-        <div class='blogPost' id='blog#{{blogid}}'>
-            <p id='blog#{{blogid}}'>{{blogpost}}</p>
-        </div>
-    </div>
-    {{/allBlogs}}
+        {{/allBlogs}}
+    <!-- {{handlebars}} if there are not any blogs then we get this message -->
+    {{else}}
+        <h2>There are not any posts submitted yet.  Goto your dash and be the first!</h2>
+    {{/if}}
 </div>
 
 <script src="./js/homepage.js"></script>

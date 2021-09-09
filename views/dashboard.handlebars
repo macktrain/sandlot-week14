@@ -13,7 +13,11 @@
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
 <div id='myBlogs'>
+    <!-- {{handlebars}} if there is a blog sent along with the view, then it will begin
+         building the posts on the page NOTE: this only shows the blogs created by the
+         logged in user -->
     {{#if blog}}
+        <!-- {{handlebars}} iterate through the blogs sent with the view -->
         {{#each blog}}
         <div class='main' id='blogmain#{{this.blogid}}'>
             <div class='mainRow'>
@@ -26,8 +30,9 @@
             </div>
         </div>
         {{/each}}
+    <!-- {{handlebars}} if there is not a blog then we get this message -->
     {{else}}
-        <h2>You do not have any blogs at this time.</h2>
+        <h2>You do not have any posts at this time.</h2>
     {{/if}}
     <div id="addBlogDiv">
         <button class="button" id='addPostBtn'>&plus; New Post</button>

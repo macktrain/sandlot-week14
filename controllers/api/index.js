@@ -1,3 +1,4 @@
+/* Will route all api requests to the proper api end point */
 const router = require('express').Router();
 
 const blogsRoutes = require('./blogs-routes');

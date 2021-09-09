@@ -4,6 +4,7 @@ const { User, Comments } = require('../../models');
 // The `/api/comments` endpoint
 
 // get comments by id
+//routet.get ":/id" will pull up a comment by its id
 router.get('/:id', async (req, res) => {
     try {
       const commentData = await Comments.findAll({  
@@ -23,7 +24,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// create a new user (this is the signup capability)
+// router.post "/" will create a new comment for a signed in user
 router.post('/', async (req, res) => {
   try {
     

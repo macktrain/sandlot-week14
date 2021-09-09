@@ -13,6 +13,8 @@
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
 <div id='myblogs'>
+    <!-- {{handlebars}} we can only get here if we have a blog so we build out the blog on 
+         the view so that we can review it -->
     {{#blog}}
     <input type="hidden" id="creatorId" value="{{creatorId}}">
     <input type="hidden" id="blogId" value="{{blogid}}">
@@ -29,6 +31,8 @@
             <input id='addThisComment' size='100'>
             <button class="button" id='addCommentBtn'>&plus; Add</button>
         </div>
+        <!-- {{handlebars}} if there is a comment sent along with the blog, then it will begin
+         building the comments on the page -->
         {{#if comments}}
             <div id='comments'>
                 {{#comments}}
@@ -40,6 +44,8 @@
                     </div>
                 {{/comments}}
             </div>
+        <!-- {{handlebars}} if there is not a comment sent along with the view, then we get
+             the following message -->
         {{else}}
             <div class='nocomments'>
                 <p>There have not been any comments made.  Be the first!</p>
