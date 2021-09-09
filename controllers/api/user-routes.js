@@ -61,7 +61,6 @@ router.post('/login', async (req, res) => {
 
 //router.post '/logout' simply logs a user out by destroying their session.
 router.post('/logout', (req, res) => {
-  console.log (req.session);
   if (req.session.logged_in) {
     req.session.destroy(() => {
       console.log("YES");

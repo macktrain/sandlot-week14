@@ -4,8 +4,10 @@
         <span id='dashBtn'><a href='/dashboard'>Dashboard</a></span>
         {{#if logged_in}}
         <span id='logoutBtn'><a href=''>Logout</a></span>
+        <input type="hidden" id="logged_in" value="true">
         {{else}}
         <span id='loginBtn'><a href='/login'>Login</a></span>
+        <input type="hidden" id="logged_in" value="false">
         {{/if}}
     </div>
     <div id='headerMsg'>

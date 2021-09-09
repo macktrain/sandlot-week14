@@ -70,12 +70,7 @@ router.get('/dashboard', withAuth, async (req,res) => {
       req.session ? (logged_in = req.session.logged_in) : (logged_in=false)
       //removes all of the extra data that is beyond the blog data that I need
       const blog = blogData.map((project) => project.get({ plain: true }));
-      console.log ('**************dashboard***************');
-      console.log ('**************dashboard***************');
-      console.log ('**************dashboard***************');
-      console.log (blog);
-      console.log ('**************dashboard***************');
-      console.log ('**************dashboard***************');
+      
       res.render('dashboard', {
         blog,
         logged_in,
