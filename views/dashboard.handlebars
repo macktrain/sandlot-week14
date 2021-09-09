@@ -23,7 +23,7 @@
             <div class='mainRow'>
                 <span><a href='javascript:changeBlogPostDiv({{this.blogid}});'>&#8635</a></span>
                 <div class='blogTitle'> {{this.blogpostTitle}}</div>
-                <div class='blogPoster'>Posted by {{this.user}} on {{this.blog_createDate}}</div>
+                <div class='blogPoster'>Posted by {{user.username}} on {{moment date=blog_create_date format="MM/DD/YYYY"}} at {{moment date=blog_create_date format="HH:mm:ss"}}</div>
             </div>
             <div class='blogPost' id='blog#{{this.blogid}}'>
                 <p id='{{this.blogid}}'>{{this.blogpost}}</p>

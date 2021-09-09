@@ -58,12 +58,24 @@ router.get('/dashboard', withAuth, async (req,res) => {
       const blogData = await Blogs.findAll({
         where: {
           creatorId : req.session.user,
-        }
+        },
+        include: [
+          {
+            model: User,
+            attributes: ['id','username','email']
+          },
+        ]
       });
       //Sets the logged_in to true/false and will be passed in with the rendering of the page
       req.session ? (logged_in = req.session.logged_in) : (logged_in=false)
       //removes all of the extra data that is beyond the blog data that I need
       const blog = blogData.map((project) => project.get({ plain: true }));
+      console.log ('**************dashboard***************');
+      console.log ('**************dashboard***************');
+      console.log ('**************dashboard***************');
+      console.log (blog);
+      console.log ('**************dashboard***************');
+      console.log ('**************dashboard***************');
       res.render('dashboard', {
         blog,
         logged_in,

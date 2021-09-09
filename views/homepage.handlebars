@@ -15,7 +15,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
     <!-- {{handlebars}} if there are blog sent along with the view, then it will begin
          building the posts on the page NOTE: this shows all blogs created by all users -->
-    {{#if blog}}
+    {{#if allBlogs}}
         {{#allBlogs}}
         <div class='main' id='blog#{{blogid}}'>
             <div class='mainRow' onclick='commentPost({{blogid}})'>
