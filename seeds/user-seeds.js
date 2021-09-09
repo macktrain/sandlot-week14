@@ -6,18 +6,13 @@ const seededPwd = bcrypt.hashSync(process.env.SEED_PASSWORD, 10);
 
 const userData = [
   {
-    username: 'lee',
+    username: 'mack',
     email: 'l@m.com',
     password: seededPwd,
   },
   {
-    username: 'mack',
+    username: 'fizzle',
     email: 'm@m.com',
-    password: seededPwd,
-  },
-  {
-    username: 'bilbo',
-    email: 'n@m.com',
     password: seededPwd,
   },
 ];

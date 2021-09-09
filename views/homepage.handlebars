@@ -12,17 +12,18 @@
     </div>
 </div>
 <div id='my-blogs'>
-    {{#each allBlogs}}
-    <div class='main' id='blog#{{this.blogid}}'>
-        <div class='mainRow' onclick='commentPost({{this.blogid}})'>
-            <div class='blogTitle'>{{this.blogpostTitle}}</div>
-            <div class='blogPoster'>Posted by {{this.user}} on {{this.blog_createDate}}</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
+    {{#allBlogs}}
+    <div class='main' id='blog#{{blogid}}'>
+        <div class='mainRow' onclick='commentPost({{blogid}})'>
+            <div class='blogTitle'>{{blogpostTitle}}</div>
+            <div class='blogPoster'>Posted by {{user.username}} on {{moment date=blog_create_date format="MM/DD/YYYY"}} at {{moment date=blog_create_date format="HH:mm:ss"}}</div>
         </div>
-        <div class='blogPost' id='blog#{{this.blogid}}'>
-            <p id='{{this.blogid}}'>{{this.blogpost}}</p>
+        <div class='blogPost' id='blog#{{blogid}}'>
+            <p id='blog#{{blogid}}'>{{blogpost}}</p>
         </div>
     </div>
-    {{/each}}
+    {{/allBlogs}}
 </div>
 
 <script src="./js/homepage.js"></script>

@@ -6,9 +6,18 @@ const { QueryTypes } = require('sequelize');
 router.get('/', async (req,res) => {
   try {
       req.session ? (logged_in = req.session.logged_in) : (logged_in=false)
-      const blogData = await Blogs.findAll();
+      const blogData = await Blogs.findAll({
+        include: [
+          {
+            model: User,
+            attributes: ['id','username','email']
+          },
+        ]
+      });
       //removes all of the extra data that is beyond the blog data that I need
+
       const allBlogs = blogData.map((project) => project.get({ plain: true }));
+
       res.render('homepage', {
         allBlogs,
         logged_in,
@@ -56,19 +65,12 @@ router.get('/addPost', (req,res) => {
 });
 
 router.get('/openBlog/:blogid', async (req,res) => {
+
   try {
       req.session ? (logged_in = req.session.logged_in) : (logged_in=false)
-
-      // let commentQuery = 'SELECT * FROM blog_db.blogs INNER JOIN blog_db.comments ON commentid = :blogid';
-
-      // const blog = await sequelize.query(query,
-      //   {
-      //     replacements: {blogid: req.params.blogid},
-      //     type: QueryTypes.SELECT
-      //   }
-      // );
       
       const blogData = await Blogs.findAll({
+        where: { blogid: req.params.blogid },
         include: [
           {
             model: User,
@@ -76,7 +78,6 @@ router.get('/openBlog/:blogid', async (req,res) => {
           },
           {
             model: Comments,
-            where: { commentid: req.params.blogid },
             include: [
               {
                 model: User,
@@ -88,6 +89,14 @@ router.get('/openBlog/:blogid', async (req,res) => {
       });
       
       const blog = blogData.map((project) => project.get({ plain: true }));
+      console.log('*********************************');
+      console.log('*********************************');
+      console.log('*********************************');
+      console.log(blog)
+      console.log('*********************************');
+      console.log('*********************************');
+      console.log('*********************************');
+  
       
       res.render('blogDetail', {
         blog,

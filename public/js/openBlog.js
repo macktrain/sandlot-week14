@@ -30,4 +30,7 @@ async function addComment (){
     }
 }
 
-document.getElementById('addCommentBtn').addEventListener('click', addComment);
+const el = document.getElementById('addCommentBtn');
+if (el) {
+    document.getElementById('addCommentBtn').addEventListener('click', addComment);
+}

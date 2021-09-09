@@ -29,14 +29,22 @@
             <input id='addThisComment' size='100'>
             <button class="button" id='addCommentBtn'>&plus; Add</button>
         </div>
-        <div id='comments'>
-            {{#comments}}
-                <div class='commentAuthor'>Comment made by {{user.username}} on {{moment date=comment_create_date format="MM/DD/YYYY"}} at {{moment date=comment_create_date format="HH:mm:ss"}}</div>
-                <div class='commentDiv' id='comment#{{[id]}}'>
-                    <div class='comment'>{{[comment]}}</div>
-                </div>
-            {{/comments}}
-        </div>
+        {{#if comments}}
+            <div id='comments'>
+                {{#comments}}
+                    <div class="individualComment">
+                        <div class='commentAuthor'>Comment made by {{user.username}} on {{moment date=comment_create_date format="MM/DD/YYYY"}} at {{moment date=comment_create_date format="HH:mm:ss"}}</div>
+                        <div class='commentDiv' id='comment#{{[id]}}'>
+                            <div class='comment'>{{[comment]}}</div>
+                        </div>
+                    </div>
+                {{/comments}}
+            </div>
+        {{else}}
+            <div class='nocomments'>
+                <p>There have not been any comments made.  Be the first!</p>
+            </div>
+        {{/if}} 
     </div>
     {{/blog}}
 </div>
